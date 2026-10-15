@@ -94,6 +94,11 @@ do
     rtp:prepend(lazypath)
 
     require("lazy").setup({
+        {
+            -- Display TODO, NOTE, HACK, FIX and WARNING as highlighted text in comments
+            "folke/todo-comments.nvim",
+            opts = { signs = false },
+        },
     }, {
         ui = {
             -- If you are using a Nerd Font: set icons to an empty table which will use the
