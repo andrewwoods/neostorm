@@ -99,6 +99,19 @@ do
             "folke/todo-comments.nvim",
             opts = { signs = false },
         },
+        {
+            "akinsho/toggleterm.nvim",
+            event = "VeryLazy",
+            version = "*",
+            hide_numbers = true,
+            opts = {
+                size = 12,
+                open_mapping = "<A-F12>",
+            },
+            float_opts = {
+                title_pos = "left",
+            },
+        },
     }, {
         ui = {
             -- If you are using a Nerd Font: set icons to an empty table which will use the
