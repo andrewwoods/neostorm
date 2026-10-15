@@ -26,6 +26,9 @@ my Neovim.
    NOTE: The docs provide a lot of information to configure
     Neovim as you like. The pages are great starting points.
     See `:help mapleader`
+    See `:help map-alt-keys`
+    See `:help map-super-keys`
+    See `:help map-cmd-key`
     See `:help vim.o`
     See `:help vim.opt`
     See `:help option-list`
@@ -36,6 +39,8 @@ my Neovim.
     See `:help lua-guide-options`
     See `:help confirm`
     See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim
+    See `:help telescope` and `:help telescope.setup()`
+    See `:help telescope.builtin`
 --]]
 
 --[[
@@ -111,6 +116,45 @@ do
             float_opts = {
                 title_pos = "left",
             },
+        },
+
+        {
+            "nvim-telescope/telescope.nvim",
+            event = "VimEnter",
+            branch = "0.1.x",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                { 
+                    "nvim-telescope/telescope-fzf-native.nvim",
+                    build = "make",
+                    cond = function()
+                        return vim.fn.executable("make") == 1
+                    end,
+                },
+                { "nvim-telescope/telescope-ui-select.nvim" },
+                { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+            },
+            config = function()
+                require("telescope").setup({
+                    extensions = {
+                        ["ui-select"] = {
+                            require("telescope.themes").get_dropdown(),
+                        },
+                    },
+                })
+
+                -- Enable Telescope extensions if they are installed
+                pcall(require("telescope").load_extension, "fzf")
+                pcall(require("telescope").load_extension, "ui-select")
+
+                local builtin = require("telescope.builtin")
+
+                vim.keymap.set("n", "<D-S-O>", builtin.find_files, { desc = "Open Files (CMD+Shift+O)" })
+                vim.keymap.set("n", "<leader><S-o>", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
+
+                vim.keymap.set("n", "<D-e>", builtin.oldfiles, { desc = 'Open Recent Files (CMD+E)' })
+                vim.keymap.set("n", "<leader>e", builtin.oldfiles, { desc = 'Open Recent Files (Leader+E) ' })
+            end,
         },
     }, {
         ui = {
