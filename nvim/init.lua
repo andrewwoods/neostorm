@@ -100,9 +100,20 @@ do
 
     require("lazy").setup({
         {
-            -- Display TODO, NOTE, HACK, FIX and WARNING as highlighted text in comments
             "folke/todo-comments.nvim",
-            opts = { signs = false },
+            dependencies = { "nvim-lua/plenary.nvim" },
+            opts = { signs = true,
+              search = {
+                command = "rg",
+                pattern = [[(@?(KEYWORDS):)]], 
+              },
+              keywords = {
+                TODO = { icon = " ", color = "hint", alt = { "INFO" } },
+              },
+              highlight = {
+                    pattern = [[.*<(\@?(KEYWORDS):?)]], 
+              },
+           },
         },
         {
             "akinsho/toggleterm.nvim",
@@ -177,4 +188,14 @@ do
             },
         },
     })
+
 end
+
+--[[
+  =============================================================
+  SECTION N: General Keymaps
+  =============================================================
+--]]
+
+vim.keymap.set("n", "<leader>t", "<CMD>TodoQuickFix keywords=TODO,FIX,FIXME<CR>", { desc = "TODO" })
+
