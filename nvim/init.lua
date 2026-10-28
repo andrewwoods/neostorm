@@ -99,6 +99,17 @@ do
     rtp:prepend(lazypath)
 
     require("lazy").setup({
+        --[[
+          Load default colorscheme AKA themes for the user to choose from.
+        --]]
+        { "Mofiqul/dracula.nvim" },
+        { "projekt0n/github-nvim-theme" },
+        { "morhetz/gruvbox" },
+        { "catppuccin/nvim" },
+
+        --[[
+          Load plugins to enhance Neovim
+        --]]
         {
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
@@ -188,9 +199,16 @@ do
             },
         },
     })
-
 end
 
+--[[
+  ============================================================
+  SECTION 3: UI / CORE UX Settings
+  ============================================================
+--]]
+do
+    vim.cmd.colorscheme("dracula")
+end
 --[[
   =============================================================
   SECTION N: General Keymaps
