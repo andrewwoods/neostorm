@@ -311,6 +311,18 @@ do
                 )
             end,
         },
+        {
+            "folke/which-key.nvim",
+            config = function()
+                require("which-key").setup({
+                    -- Delay between pressing a key and opening which-key (milliseconds)
+                    delay = 0,
+                    icons = { mappings = vim.g.have_nerd_font },
+                    -- Document existing key chains
+                    spec = {},
+                })
+            end,
+        },
     }, {
         ui = {
             -- If you are using a Nerd Font: set icons to an empty table which will use the
