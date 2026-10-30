@@ -109,6 +109,10 @@ do
         --[[
           Load plugins to enhance Neovim
         --]]
+        { "neovim/nvim-lspconfig" },
+        { "mason-org/mason.nvim" },
+        { "mason-org/mason-lspconfig.nvim" },
+        { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         {
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
@@ -170,11 +174,75 @@ do
 
                 local builtin = require("telescope.builtin")
 
-                vim.keymap.set("n", "<D-S-O>", builtin.find_files, { desc = "Open Files (CMD+Shift+O)" })
-                vim.keymap.set("n", "<leader><S-o>", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
+                vim.keymap.set("n", "<leader>O", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
 
-                vim.keymap.set("n", "<D-e>", builtin.oldfiles, { desc = 'Open Recent Files (CMD+E)' })
-                vim.keymap.set("n", "<leader>e", builtin.oldfiles, { desc = 'Open Recent Files (Leader+E) ' })
+                vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
+                vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "[P]roject Files Tracked by [G]it" })
+
+                vim.keymap.set("n", "<leader>e", builtin.oldfiles, { desc = "Open Recent Files (Leader+E) " })
+
+                vim.keymap.set("n", "<leader>se", builtin.live_grep, { desc = "[S]earch [E]verywhere " })
+
+                vim.keymap.set("n", "<leader>s.", function()
+                    builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+                        winblend = 10,
+                        previewer = false,
+                    }))
+                end, { desc = "Fuzzily [S]earch [c]urrent File" })
+
+                vim.keymap.set("n", "<leader>s/", function()
+                    builtin.live_grep({
+                        grep_open_files = true,
+                        prompt_title = "Live  in Open Files",
+                    })
+                end, { desc = "[S]earch [/] in Open Files" })
+
+                vim.keymap.set("n", "<leader>ut", builtin.colorscheme, { desc = "UI: List Themes" })
+                vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "List Open Files" })
+
+                vim.api.nvim_create_autocmd("LspAttach", {
+                    group = vim.api.nvim_create_augroup("telescope-lsp-attach", { clear = true }),
+                    callback = function(event)
+                        local buf = event.buf
+
+                        vim.keymap.set("n", "<leader>2", builtin.lsp_document_symbols, { desc = "Structure" })
+
+                        vim.keymap.set(
+                            "n",
+                            "<M-F7>",
+                            builtin.lsp_references,
+                            { buffer = buf, desc = "Find Usages for current word" }
+                        )
+
+                        vim.keymap.set(
+                            "n",
+                            "<leader>b",
+                            builtin.lsp_implementations,
+                            { buffer = buf, desc = "Goto Implementation" }
+                        )
+
+                        vim.keymap.set(
+                            "n",
+                            "<leader>B",
+                            builtin.lsp_definitions,
+                            { buffer = buf, desc = "Goto Definition for current word" }
+                        )
+
+                        vim.keymap.set(
+                            "n",
+                            "<leader>o",
+                            builtin.lsp_document_symbols,
+                            { buffer = buf, desc = "Open Document Symbols" }
+                        )
+
+                        vim.keymap.set(
+                            "n",
+                            "<leader>O",
+                            builtin.lsp_dynamic_workspace_symbols,
+                            { buffer = buf, desc = "Open Workspace Symbols" }
+                        )
+                    end,
+                })
             end,
         },
     }, {
