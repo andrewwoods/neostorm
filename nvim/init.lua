@@ -284,6 +284,33 @@ do
                 vim.keymap.set("n", "<leader>1", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Project files" })
             end,
         },
+        {
+            "andrewwoods/vim-copy-path-reference",
+            config = function()
+                local keymap = vim.keymap
+
+                keymap.set(
+                    "n",
+                    "<leader>cb",
+                    "<cmd>CopyBaseFilenameAndLineNumber<CR>",
+                    { desc = "[C]opy [B]ase Filename" }
+                )
+                keymap.set("n", "<leader>cd", "<cmd>CopyFullDirectory<CR>", { desc = "[C]opy Full [D]irectory" })
+                keymap.set("n", "<leader>cf", "<cmd>CopyFullPathAndLineNumber<CR>", { desc = "[C]opy [F]ull Path" })
+                keymap.set(
+                    "n",
+                    "<leader>cp",
+                    "<cmd>CopyRelativePathAndLineNumber<CR>",
+                    { desc = "[C]opy Relative [P]ath" }
+                )
+                keymap.set(
+                    "n",
+                    "<leader>cr",
+                    "<cmd>CopyRelativeDirectory<CR>",
+                    { desc = "[C]opy [R]elative Directory" }
+                )
+            end,
+        },
     }, {
         ui = {
             -- If you are using a Nerd Font: set icons to an empty table which will use the
