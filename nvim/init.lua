@@ -314,6 +314,35 @@ end
 --]]
 do
     vim.cmd.colorscheme("dracula")
+
+    -- Keep the search result centered
+    vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search result" })
+    vim.keymap.set("n", "N", "Nzzzv", { desc = "Go to prev search result" })
+
+    -- Move visually selected lines up and down
+    vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+    vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+    -- yanks text into the System Clipboard
+    vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+    vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
+
+    -- Delete the text for good by using the Black Hole register
+    vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], {
+        desc = "Delete text using the Black Hole Register",
+    })
+    -- Quit normally
+    vim.keymap.set("n", "Q", "<cmd>q<cr>", { desc = "[Q]uit" })
+
+    -- Highlight when yanking (copying) text
+    vim.api.nvim_create_autocmd("TextYankPost", {
+        desc = "Highlight when yanking (copying) text",
+        group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+        callback = function()
+            --  See `:help vim.highlight.on_yank()`
+            vim.highlight.on_yank()
+        end,
+    })
 end
 --[[
   =============================================================
