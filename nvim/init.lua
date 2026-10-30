@@ -323,6 +323,18 @@ do
                 })
             end,
         },
+        {
+            "mfussenegger/nvim-lint",
+            opts = {
+                linters_by_ft = {
+                    sh = { "shellcheck" },
+                    bash = { "shellcheck" },
+                    py = { "pylint" },
+                    php = { "phpantom" },
+                },
+            },
+            config = function() end,
+        },
     }, {
         ui = {
             -- If you are using a Nerd Font: set icons to an empty table which will use the
