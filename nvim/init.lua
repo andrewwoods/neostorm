@@ -385,6 +385,27 @@ do
     -- Quit normally
     vim.keymap.set("n", "Q", "<cmd>q<cr>", { desc = "[Q]uit" })
 
+    -- Quick Fix List
+    vim.keymap.set("n", "<leader>qo", "<cmd>copen<cr>", {
+        desc = "[Q]uickfix List [O]pen",
+    })
+
+    vim.keymap.set("n", "<leader>qq", "<cmd>cclose<cr>", {
+        desc = "[Q]uickfix List Close/[Q]uit",
+    })
+
+    vim.keymap.set("n", "<leader>qt", "<cmd>Telescope quickfix<cr>", {
+        desc = "[Q]uickfix List via [T]elescope",
+    })
+
+    vim.keymap.set("n", "<C-PageDown>", "<cmd>cnext<cr>", {
+        desc = "[Q]uickfix List [N]ext",
+    })
+
+    vim.keymap.set("n", "<C-PageUp>", "<cmd>cprev<cr>", {
+        desc = "[Q]uickfix List [P]rev",
+    })
+
     -- Highlight when yanking (copying) text
     vim.api.nvim_create_autocmd("TextYankPost", {
         desc = "Highlight when yanking (copying) text",
