@@ -183,6 +183,14 @@ do
                 vim.keymap.set("n", "<leader>sM", builtin.marks, { desc = "[S]earch [M]arks" })
 
                 vim.keymap.set("n", "<leader>se", builtin.live_grep, { desc = "[S]earch [E]verywhere " })
+                vim.keymap.set("n", "<leader>sv", function()
+                    builtin.live_grep({
+                        prompt_title = "Search Vendor",
+                        prompt_prefix = "Search: ",
+                        search_dirs = { "vendor" },
+                        additional_args = { "--no-ignore" },
+                    })
+                end, { desc = "[S]earch [V]endor" })
                 vim.keymap.set("n", "<leader>sw", function()
                     builtin.grep_string({
                         prompt_title = "Word Search", -- optional: title shown on the prompt window
