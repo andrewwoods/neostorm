@@ -136,10 +136,30 @@ do
             hide_numbers = true,
             opts = {
                 size = 12,
-                open_mapping = "<A-F12>",
+                open_mapping = "<leader>T",
             },
             float_opts = {
                 title_pos = "left",
+            },
+        },
+
+        {
+            "kdheepak/lazygit.nvim",
+            cmd = {
+                "LazyGit",
+                "LazyGitConfig",
+                "LazyGitCurrentFile",
+                "LazyGitFilter",
+                "LazyGitFilterCurrentFile",
+            },
+            -- optional for floating window border decoration
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+            },
+            -- setting the keybinding for LazyGit with 'keys' is recommended in
+            -- order to load the plugin when the command is run for the first time
+            keys = {
+                { "<leader>9", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
             },
         },
 
@@ -174,12 +194,14 @@ do
 
                 local builtin = require("telescope.builtin")
 
+                vim.keymap.set("n", "<leader>E", builtin.oldfiles, { desc = "Open Recent Files (Leader+E) " })
+
                 vim.keymap.set("n", "<leader>O", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
+                vim.keymap.set("n", "<leader>0", builtin.git_commits, { desc = "Commit Panel" })
 
                 vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
                 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "[P]roject Files Tracked by [G]it" })
 
-                vim.keymap.set("n", "<leader>e", builtin.oldfiles, { desc = "Open Recent Files (Leader+E) " })
                 vim.keymap.set("n", "<leader>sM", builtin.marks, { desc = "[S]earch [M]arks" })
 
                 vim.keymap.set("n", "<leader>se", builtin.live_grep, { desc = "[S]earch [E]verywhere " })
@@ -226,7 +248,7 @@ do
                     callback = function(event)
                         local buf = event.buf
 
-                        vim.keymap.set("n", "<leader>2", builtin.lsp_document_symbols, { desc = "Structure" })
+                        vim.keymap.set("n", "<leader>7", builtin.lsp_document_symbols, { desc = "Structure" })
 
                         vim.keymap.set(
                             "n",
