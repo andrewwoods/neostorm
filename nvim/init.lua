@@ -180,6 +180,7 @@ do
                 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "[P]roject Files Tracked by [G]it" })
 
                 vim.keymap.set("n", "<leader>e", builtin.oldfiles, { desc = "Open Recent Files (Leader+E) " })
+                vim.keymap.set("n", "<leader>sM", builtin.marks, { desc = "[S]earch [M]arks" })
 
                 vim.keymap.set("n", "<leader>se", builtin.live_grep, { desc = "[S]earch [E]verywhere " })
                 vim.keymap.set("n", "<leader>sw", function()
@@ -192,6 +193,7 @@ do
                         },
                     })
                 end, { desc = "[S]earch current [w]ord" })
+                vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 
                 vim.keymap.set("n", "<leader>s.", function()
                     builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
@@ -208,6 +210,7 @@ do
                 end, { desc = "[S]earch [/] in Open Files" })
 
                 vim.keymap.set("n", "<leader>ut", builtin.colorscheme, { desc = "UI: List Themes" })
+                vim.keymap.set("n", "<leader>uo", builtin.vim_options, { desc = "UI: Vim Options" })
                 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "List Open Files" })
 
                 vim.api.nvim_create_autocmd("LspAttach", {
