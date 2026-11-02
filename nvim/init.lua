@@ -182,6 +182,16 @@ do
                 vim.keymap.set("n", "<leader>e", builtin.oldfiles, { desc = "Open Recent Files (Leader+E) " })
 
                 vim.keymap.set("n", "<leader>se", builtin.live_grep, { desc = "[S]earch [E]verywhere " })
+                vim.keymap.set("n", "<leader>sw", function()
+                    builtin.grep_string({
+                        prompt_title = "Word Search", -- optional: title shown on the prompt window
+                        prompt_prefix = "Search: ", -- the prompt string
+                        sorting_strategy = "ascending",
+                        layout_config = {
+                            prompt_position = "top", -- prompt above the results
+                        },
+                    })
+                end, { desc = "[S]earch current [w]ord" })
 
                 vim.keymap.set("n", "<leader>s.", function()
                     builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
