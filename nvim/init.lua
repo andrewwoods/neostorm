@@ -373,7 +373,7 @@ do
                     sh = { "shellcheck" },
                     bash = { "shellcheck" },
                     py = { "pylint" },
-                    php = { "phpantom" },
+                    php = { "psalm" },
                 },
             },
             config = function() end,
