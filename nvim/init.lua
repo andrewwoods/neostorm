@@ -220,6 +220,8 @@ do
 
                 vim.keymap.set("n", "<leader>sM", builtin.marks, { desc = "[S]earch [M]arks" })
 
+                vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+
                 vim.keymap.set("n", "<leader>se", builtin.live_grep, { desc = "[S]earch [E]verywhere " })
                 vim.keymap.set("n", "<leader>sv", function()
                     builtin.live_grep({
@@ -257,6 +259,15 @@ do
 
                 vim.keymap.set("n", "<leader>ut", builtin.colorscheme, { desc = "UI: List Themes" })
                 vim.keymap.set("n", "<leader>uo", builtin.vim_options, { desc = "UI: Vim Options" })
+
+                vim.keymap.set("n", "<leader>ud", function()
+                    if vim.diagnostic.is_enabled() then
+                        vim.diagnostic.enable(false)
+                    else
+                        vim.diagnostic.enable(true)
+                    end
+                end, { desc = "UI: Toggle Diagnostics" })
+
                 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "List Open Files" })
 
                 vim.api.nvim_create_autocmd("LspAttach", {
@@ -285,13 +296,6 @@ do
                             "<leader>B",
                             builtin.lsp_definitions,
                             { buffer = buf, desc = "Goto Definition for current word" }
-                        )
-
-                        vim.keymap.set(
-                            "n",
-                            "<leader>o",
-                            builtin.lsp_document_symbols,
-                            { buffer = buf, desc = "Open Document Symbols" }
                         )
 
                         vim.keymap.set(
@@ -456,6 +460,11 @@ do
     vim.keymap.set("n", "<leader>qt", "<cmd>Telescope quickfix<cr>", {
         desc = "[Q]uickfix List via [T]elescope",
     })
+
+    vim.keymap.set("n", "<leader>qs", function()
+        vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)))
+        vim.cmd("copen")
+    end, { desc = "Send Diagnostics to Quickfix" })
 
     vim.keymap.set("n", "<C-PageDown>", "<cmd>cnext<cr>", {
         desc = "[Q]uickfix List [N]ext",
