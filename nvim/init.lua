@@ -449,6 +449,8 @@ do
         desc = "[Q]uickfix List [P]rev",
     })
 
+    vim.keymap.set("n", "<leader>qT", "<CMD>TodoQuickFix keywords=TODO,FIX,FIXME<CR>", { desc = "TODO" })
+
     -- Highlight when yanking (copying) text
     vim.api.nvim_create_autocmd("TextYankPost", {
         desc = "Highlight when yanking (copying) text",
@@ -578,5 +580,4 @@ end
   =============================================================
 --]]
 
-vim.keymap.set("n", "<leader>t", "<CMD>TodoQuickFix keywords=TODO,FIX,FIXME<CR>", { desc = "TODO" })
 
