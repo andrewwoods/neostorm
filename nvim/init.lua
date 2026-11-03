@@ -257,8 +257,12 @@ do
                     })
                 end, { desc = "[S]earch [/] in Open Files" })
 
-                vim.keymap.set("n", "<leader>ut", builtin.colorscheme, { desc = "UI: List Themes" })
-                vim.keymap.set("n", "<leader>uo", builtin.vim_options, { desc = "UI: Vim Options" })
+                vim.keymap.set("n", "<leader>ut", builtin.colorscheme, {
+                    desc = "UI: List Themes",
+                })
+                vim.keymap.set("n", "<leader>uo", builtin.vim_options, {
+                    desc = "UI: Vim Options",
+                })
 
                 vim.keymap.set("n", "<leader>ud", function()
                     if vim.diagnostic.is_enabled() then
@@ -304,10 +308,14 @@ do
                             builtin.lsp_dynamic_workspace_symbols,
                             { buffer = buf, desc = "Open Workspace Symbols" }
                         )
+
+                        -- Opens a popup that displays documentation about the word under your cursor
+                        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "Hover Documentation" })
                     end,
                 })
             end,
         },
+
         {
             "nvim-tree/nvim-tree.lua",
             dependencies = "nvim-tree/nvim-web-devicons",
@@ -448,12 +456,16 @@ do
     vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
     -- yanks text into the System Clipboard
-    vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-    vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
+    vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], {
+        desc = "Copy to System Clipboard",
+    })
+    vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]], {
+        desc = "Append to System Clipboard",
+    })
 
     -- Delete the text for good by using the Black Hole register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], {
-        desc = "Delete text using the Black Hole Register",
+        desc = "Delete text forever",
     })
     -- Quit normally
     vim.keymap.set("n", "Q", "<cmd>q<cr>", { desc = "[Q]uit" })
