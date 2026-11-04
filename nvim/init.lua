@@ -135,6 +135,47 @@ do
             },
         },
         {
+            -- Adds git related signs to the gutter, as well as utilities for managing changes
+            "lewis6991/gitsigns.nvim",
+            opts = {
+                signs = {
+                    add = { text = "+" },
+                    change = { text = "~" },
+                    delete = { text = "_" },
+                    topdelete = { text = "‾" },
+                    changedelete = { text = "~" },
+                },
+                on_attach = function(bufnr)
+                    local gs = package.loaded.gitsigns
+
+                    local function map(mode, l, r, desc)
+                        vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
+                    end
+                    --[[
+                      The majority of Git management should not be done in the
+                      current buffer. Instead, use LazyGit <leader>9 for the
+                      significant operations. The mappings below are for viewing
+                      and navigation.
+                    --]]
+
+                    -- Navigation
+                    map("n", "h]", gs.next_hunk, "Next Hunk")
+                    map("n", "h[", gs.prev_hunk, "Prev Hunk")
+
+                    -- Actions
+                    map("n", "<leader>gb", function()
+                        gs.blame_line({ full = true })
+                    end, "Blame line")
+                    map("n", "<leader>gB", gs.toggle_current_line_blame, "Toggle line blame")
+
+                    map("n", "<leader>gd", gs.diffthis, "Diff this")
+                    map("n", "<leader>gD", function()
+                        gs.diffthis("~")
+                    end, "Diff this ~")
+                end,
+            },
+        },
+        {
             "akinsho/toggleterm.nvim", -- Toggle Terminal
             event = "VeryLazy",
             version = "*",
