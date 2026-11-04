@@ -318,6 +318,10 @@ do
                     end
                 end, { desc = "UI: Toggle Diagnostics" })
 
+                vim.keymap.set("n", "<leader>ue", function()
+                    vim.cmd("new | put =execute('messages') | setlocal buftype=nofile")
+                end, { desc = "UI: Display messages in buffer" })
+
                 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "List Open Files" })
 
                 vim.api.nvim_create_autocmd("LspAttach", {
