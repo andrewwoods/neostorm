@@ -2,7 +2,7 @@
 
 NeoStorm
 
-The Neovim Configuration Inspired by PhpStorm 
+The Neovim Configuration Inspired by PhpStorm
 
 As a PhpStorm user, It's amazing how much it can help you write great code. I'm
 also a fan of Neovim. While PhpStorm has the best Vim-bindings support across
@@ -18,7 +18,6 @@ my Neovim.
   =============================================================
 --]]
 
-
 --[[
   =============================================================
   SECTION 0: Getting Help
@@ -26,6 +25,7 @@ my Neovim.
    NOTE: The docs provide a lot of information to configure
     Neovim as you like. The pages are great starting points.
     See `:help mapleader`
+    See `:help key-codes`
     See `:help map-alt-keys`
     See `:help map-super-keys`
     See `:help map-cmd-key`
@@ -41,6 +41,10 @@ my Neovim.
     See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim
     See `:help telescope` and `:help telescope.setup()`
     See `:help telescope.builtin`
+    See `:help telescope.builtin.live_grep()`
+    See `:help runtimepath`
+    See `:help gitsigns` to understand what the configuration keys do
+	See `:help K`
 --]]
 
 --[[
@@ -116,21 +120,22 @@ do
         {
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
-            opts = { signs = true,
-              search = {
-                command = "rg",
-                pattern = [[(@?(KEYWORDS):)]], 
-              },
-              keywords = {
-                TODO = { icon = " ", color = "hint", alt = { "INFO" } },
-              },
-              highlight = {
-                    pattern = [[.*<(\@?(KEYWORDS):?)]], 
-              },
-           },
+            opts = {
+                signs = true,
+                search = {
+                    command = "rg",
+                    pattern = [[(@?(KEYWORDS):)]],
+                },
+                keywords = {
+                    TODO = { icon = " ", color = "hint", alt = { "INFO" } },
+                },
+                highlight = {
+                    pattern = [[.*<(\@?(KEYWORDS):?)]],
+                },
+            },
         },
         {
-            "akinsho/toggleterm.nvim",
+            "akinsho/toggleterm.nvim", -- Toggle Terminal
             event = "VeryLazy",
             version = "*",
             hide_numbers = true,
@@ -185,7 +190,7 @@ do
             branch = "0.1.x",
             dependencies = {
                 "nvim-lua/plenary.nvim",
-                { 
+                {
                     "nvim-telescope/telescope-fzf-native.nvim",
                     build = "make",
                     cond = function()
@@ -386,6 +391,10 @@ do
             "folke/which-key.nvim",
             config = function()
                 require("which-key").setup({
+                    -- @TODO: Replace the keymap.set() calls with whichkey.add()
+                    --  to enable use of group attributes
+                    --  See https://github.com/folke/which-key.nvim#%EF%B8%8F-mappings
+                    --
                     -- Delay between pressing a key and opening which-key (milliseconds)
                     delay = 0,
                     icons = { mappings = vim.g.have_nerd_font },
