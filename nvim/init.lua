@@ -256,7 +256,9 @@ do
 
                 local builtin = require("telescope.builtin")
 
-                vim.keymap.set("n", "<leader>E", builtin.oldfiles, { desc = "Open Recent Files (Leader+E) " })
+                vim.keymap.set("n", "<leader>E", function()
+                    builtin.oldfiles({ only_cwd = true })
+                end, { desc = "Open Recent Files (Leader+E)" })
 
                 vim.keymap.set("n", "<leader>O", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
                 vim.keymap.set("n", "<leader>0", builtin.git_commits, { desc = "Commit Panel" })
