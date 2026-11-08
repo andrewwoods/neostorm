@@ -618,7 +618,11 @@ do
         -- But for many setups, the LSP (`rust_analyzer`) will work just fine
         -- rust_analyzer = {},
         -- @TODO: Determine if I need this for PHPantom
-        --  phpantom = {},
+        phpantom_lsp = {
+            cmd = { "phpantom_lsp" },
+            filetypes = { "php" },
+            root_markers = { ".phpantom.toml", ".git", "composer.json" },
+        },
         stylua = {}, -- Used to format Lua code
 
         -- Special Lua Config, as recommended by neovim help docs
