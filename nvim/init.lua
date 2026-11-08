@@ -226,9 +226,19 @@ do
         },
 
         {
+            "MeanderingProgrammer/render-markdown.nvim",
+            dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+            ---@module 'render-markdown'
+            ---@type render.md.UserConfig
+            opts = {},
+            vim.keymap.set("n", "<leader>um", function()
+                require("render-markdown").toggle()
+            end, { desc = "UI: Toggle Rendered Markdown" }),
+        },
+        {
             "nvim-telescope/telescope.nvim",
             event = "VimEnter",
-            branch = "0.1.x",
+            branch = "master",
             dependencies = {
                 "nvim-lua/plenary.nvim",
                 {
