@@ -7,7 +7,7 @@ As a PhpStorm user, It's amazing how much it can help you write great code. I'm
 also a fan of Neovim. While PhpStorm has the best Vim-bindings support across
 IDEs, There are still times when it doesn't do what I want. This project
 approaches the issue from the opposite direction — to put PhpStorm support into
-my Neovim.
+my Neovim. More precisely, make Neovim act like PhpStorm.
 
 > [!IMPORTANT]
 > **Hypothesis**: Can one create an IDE in Neovim, using the same keyboard
@@ -30,25 +30,30 @@ configuration file to add their own configuraiton settings and leader mappings.
 
 ## LANGUAGE PRIORITY
 
+1. Markdown
 1. PHP programming
-2. HTML/CSS
-3. SQL
-4. Bash
+1. Bash
 
 ## Version
 
 The current version is 0.0.0. This project uses [semantic versioning](http://semver.org).
 
+
+## Table of Contents
+
+* Frequently Asked Questions (FAQ)
+* Keymaps
+
 ## Features
 
-* First feature
-* Second feature
-* Third feature
+* Powered by Telescope
+* Quickfix Support
+* Copy Path Reference
+* Search Manpages and Neovim Help
 
 ## Ideas for sections/pages
 
 * Language Translations 
-* Frequently Asked Questions (FAQ)
 * Screenshots
 * Submit Issues
 
