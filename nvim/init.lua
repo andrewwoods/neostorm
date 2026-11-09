@@ -221,7 +221,8 @@ do
             -- setting the keybinding for LazyGit with 'keys' is recommended in
             -- order to load the plugin when the command is run for the first time
             keys = {
-                { "<leader>9", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
+                { "<leader>0", "<cmd>LazyGit<cr>", desc = "Commit" },
+                { "<leader>9", "<cmd>LazyGitFilter<cr>", desc = "Git" },
             },
         },
 
@@ -271,7 +272,6 @@ do
                 end, { desc = "Open Recent Files (Leader+E)" })
 
                 vim.keymap.set("n", "<leader>O", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
-                vim.keymap.set("n", "<leader>0", builtin.git_commits, { desc = "Commit Panel" })
 
                 vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
                 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "[P]roject Files Tracked by [G]it" })
