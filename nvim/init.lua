@@ -557,11 +557,11 @@ do
         vim.cmd("copen")
     end, { desc = "Send Diagnostics to Quickfix" })
 
-    vim.keymap.set("n", "<C-PageDown>", "<cmd>cnext<cr>", {
+    vim.keymap.set("n", "q[", "<cmd>cnext<cr>", {
         desc = "[Q]uickfix List [N]ext",
     })
 
-    vim.keymap.set("n", "<C-PageUp>", "<cmd>cprev<cr>", {
+    vim.keymap.set("n", "q]", "<cmd>cprev<cr>", {
         desc = "[Q]uickfix List [P]rev",
     })
 
