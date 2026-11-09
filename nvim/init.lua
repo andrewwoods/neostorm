@@ -199,12 +199,16 @@ do
                 formatters_by_ft = {
                     lua = { "stylua" },
                     php = { "php_cs_fixer" },
+                    python = { "black" },
                     sh = { "shfmt" },
                     bash = { "shfmt" },
                 },
                 format_on_save = {
                     timeout_ms = 1000,
                     lsp_format = "fallback",
+                    enabled_filetypes = {
+                        python = true,
+                    },
                 },
             },
         },
@@ -509,7 +513,7 @@ do
                 linters_by_ft = {
                     sh = { "shellcheck" },
                     bash = { "shellcheck" },
-                    py = { "pylint" },
+                    python = { "pylint" },
                     php = { "psalm" },
                 },
             },
