@@ -304,9 +304,39 @@ do
                 end, { desc = "[S]earch current [w]ord" })
                 vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 
+                vim.keymap.set("n", "<leader>3", function()
+                    local items = {
+                        {
+                            label = "Search Everywhere",
+                            action = builtin.live_grep,
+                        },
+                        {
+                            label = "Search in Open Files",
+                            action = function()
+                                builtin.live_grep({
+                                    grep_open_files = true,
+                                    prompt_title = "Live Grep in Open Files",
+                                })
+                            end,
+                        },
+                    }
+
+                    vim.ui.select(items, {
+                        prompt = "Find",
+                        format_item = function(item)
+                            return item.label
+                        end,
+                    }, function(choice)
+                        if choice then
+                            choice.action()
+                        end
+                    end)
+                end, { desc = "Find" })
+
                 vim.keymap.set("n", "<leader>s.", function()
                     builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
                         winblend = 10,
+                        sorting_strategy = "ascending",
                         previewer = false,
                     }))
                 end, { desc = "Fuzzily [S]earch [c]urrent File" })
