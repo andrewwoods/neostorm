@@ -110,9 +110,6 @@ do
         { "morhetz/gruvbox" },
         { "catppuccin/nvim" },
 
-        --[[
-          Load plugins to enhance Neovim
-        --]]
         { "neovim/nvim-lspconfig" },
         { "mason-org/mason.nvim" },
         { "mason-org/mason-lspconfig.nvim" },
@@ -145,6 +142,7 @@ do
                     topdelete = { text = "‾" },
                     changedelete = { text = "~" },
                 },
+                word_diff = false,
                 on_attach = function(bufnr)
                     local gs = package.loaded.gitsigns
 
@@ -172,6 +170,11 @@ do
                     map("n", "<leader>gD", function()
                         gs.diffthis("~")
                     end, "Diff this ~")
+
+                    map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
+                    map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
+
+                    map("n", "<leader>gw", gs.toggle_word_diff, "Toggle word diff")
                 end,
             },
         },
