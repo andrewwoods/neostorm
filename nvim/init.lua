@@ -489,11 +489,13 @@ do
                     --  to enable use of group attributes
                     --  See https://github.com/folke/which-key.nvim#%EF%B8%8F-mappings
                     --
+                    -- See https://github.com/folke/which-key.nvim/blob/3aab2147e74890957785941f0c1ad87d0a44c15a/README.md?plain=1#L160
                     -- Delay between pressing a key and opening which-key (milliseconds)
                     delay = 0,
                     icons = { mappings = vim.g.have_nerd_font },
                     -- Document existing key chains
                     spec = {},
+                    sort = { "group", "case", "alnum" },
                 })
             end,
         },
