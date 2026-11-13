@@ -109,6 +109,7 @@ do
         { "projekt0n/github-nvim-theme" },
         { "morhetz/gruvbox" },
         { "catppuccin/nvim" },
+        { "rootools/darcula.nvim" },
 
         { "neovim/nvim-lspconfig" },
         { "mason-org/mason.nvim" },
@@ -550,7 +551,7 @@ end
   ============================================================
 --]]
 do
-    vim.cmd.colorscheme("dracula")
+    vim.cmd.colorscheme("darcula")
 
     -- Keep the search result centered
     vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search result" })
