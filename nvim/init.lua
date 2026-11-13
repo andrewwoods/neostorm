@@ -29,8 +29,8 @@ my Neovim.
     See `:help map-alt-keys`
     See `:help map-super-keys`
     See `:help map-cmd-key`
-    See `:help vim.o`
     See `:help vim.opt`
+    See `:help vim.o`
     See `:help option-list`
     See `:help clipboard`
     See `:help list`
@@ -145,8 +145,8 @@ do
             },
         },
         {
-            -- Adds git related signs to the gutter, as well as utilities for managing changes
             "lewis6991/gitsigns.nvim",
+            -- Adds git related signs to the gutter, as well as utilities for managing changes
             opts = {
                 signs = {
                     add = { text = "+" },
@@ -219,7 +219,9 @@ do
                     timeout_ms = 1000,
                     lsp_format = "fallback",
                     enabled_filetypes = {
+                        lua = true,
                         python = true,
+                        php = true,
                     },
                 },
             },
@@ -244,9 +246,10 @@ do
                 { "<leader>9", "<cmd>LazyGitFilter<cr>", desc = "Git" },
             },
         },
-
         {
             "MeanderingProgrammer/render-markdown.nvim",
+            -- NOTE: this plugin requires a newer version of Telescope. I'll
+            -- have to upgrade for this to work correctly
             dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
             ---@module 'render-markdown'
             ---@type render.md.UserConfig
