@@ -260,6 +260,7 @@ do
             event = "VimEnter",
             branch = "master",
             dependencies = {
+                "debugloop/telescope-undo.nvim",
                 "nvim-lua/plenary.nvim",
                 {
                     "nvim-telescope/telescope-fzf-native.nvim",
@@ -277,7 +278,9 @@ do
                         ["ui-select"] = {
                             require("telescope.themes").get_dropdown(),
                         },
+                        undo = {},
                     },
+                    require("telescope").load_extension("undo"),
                 })
 
                 -- Enable Telescope extensions if they are installed
@@ -366,6 +369,9 @@ do
 
                 vim.keymap.set("n", "<leader>ut", builtin.colorscheme, {
                     desc = "UI: List Themes",
+                })
+                vim.keymap.set("n", "<leader>ul", "<cmd>Telescope undo<CR>", {
+                    desc = "UI: Local History",
                 })
                 vim.keymap.set("n", "<leader>uo", builtin.vim_options, {
                     desc = "UI: Vim Options",
