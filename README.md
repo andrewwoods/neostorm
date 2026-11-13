@@ -16,7 +16,7 @@ my Neovim. More precisely, make Neovim act like PhpStorm.
 I think it should be possible. However, I suspect there may be some keystroke
 combinations used in PhpStorm that will get captured by the Terminal
 application, or the shell itself. The default keymaps for PhpStorm should
-trigger similr, if not the same behavior, in Neovim. Some interpretation will
+trigger similar, if not the same behavior, in Neovim. Some interpretation will
 be necessary since the fixed width characters and UI drawing utilities of the
 terminal, will naturally display differently.
 
@@ -33,6 +33,11 @@ configuration file to add their own configuraiton settings and leader mappings.
 1. Markdown
 1. PHP programming
 1. Bash
+1. Python
+1. HTML/CSS
+1. Javascript
+1. SQL
+1. Typescript
 
 ## Version
 
@@ -44,12 +49,41 @@ The current version is 0.0.0. This project uses [semantic versioning](http://sem
 * Frequently Asked Questions (FAQ)
 * Keymaps
 
+## Issues to create
+
+* Create a **Scratches** Directory (Add, remove, file picker) uses `$XDG_DATA_HOME`) for project independent files.
+* Add `<leader>2` **Bookmarks panel**: Use a plugin to visualize breakpoints
+* Add `<leader>4` **Run panel**:
+* Add `<leader>5` **Debug panel**:
+* Add `<leader>6` **Problems panel**:
+* Add `<leader>8` **Database panel**: Maybe something else; Maybe use LazySQL
+* Is there a **Regex Tester** plugin I could add?
+* Write config examples for overwriting main config e.g. Use WordPress setting with `exrc` option enabled and `.nvim.lua` file.
+* Write keymap for a user plugin e.g. `require('awoods.keymaps')`
+* Add Harpoon support
+* Add Undotree support (Is there a better undotree UI than the default?)
+* Document Config File settings
+
 ## Features
 
-* Powered by Telescope
+* Powered by Telescope (RipGrep and FZF)
+* Default Themes support (**darcula**, catpuccin, dracula, github, gruvbox)
 * Quickfix Support
 * Copy Path Reference
+* Code Refactoring
 * Search Manpages and Neovim Help
+* File Explorer Panel
+* TODO Comments Panel
+* Git changes navigation
+* Terminal Panel
+* Language-based Autoformat upon save
+* Language-based code linting upon save
+* LazyGit integration
+* Live rendered markdown similar to Obsidian
+* Copy File and Directory Paths
+* Dynamic keymap menu via which-key
+
+
 
 ## Ideas for sections/pages
 
