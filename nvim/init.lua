@@ -429,6 +429,9 @@ do
                     view = {
                         width = 35,
                     },
+                    sort = {
+                        sorter = "case_sensitive",
+                    },
                     -- change folder arrow icons
                     renderer = {
                         indent_markers = {
