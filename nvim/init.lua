@@ -186,7 +186,6 @@ do
             hide_numbers = true,
             opts = {
                 size = 12,
-                open_mapping = "<leader>T",
             },
             float_opts = {
                 title_pos = "left",
@@ -553,6 +552,9 @@ end
 do
     vim.cmd.colorscheme("darcula")
 
+    vim.keymap.set("t", "<leader>T", "<C-\\><C-N><leader>T", { desc = "Close Terminal" })
+
+    vim.keymap.set("n", "<leader>T", "<cmd>ToggleTerm size=15<cr>", { desc = "UI: Toggle Rendered Markdown" })
     -- Keep the search result centered
     vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search result" })
     vim.keymap.set("n", "N", "Nzzzv", { desc = "Go to prev search result" })
