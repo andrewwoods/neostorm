@@ -214,6 +214,7 @@ do
                     python = { "black" },
                     sh = { "shfmt" },
                     bash = { "shfmt" },
+                    javascript = { "prettier" },
                 },
                 format_on_save = {
                     timeout_ms = 1000,
@@ -222,6 +223,7 @@ do
                         lua = true,
                         python = true,
                         php = true,
+                        javascript = true,
                     },
                 },
             },
