@@ -109,12 +109,24 @@ do
         { "projekt0n/github-nvim-theme" },
         { "morhetz/gruvbox" },
         { "catppuccin/nvim" },
-        { "rootools/darcula.nvim" },
+        {
+            "rootools/darcula.nvim",
+            config = function()
+                require("lualine").setup({
+                    options = { theme = "darcula" },
+                })
+            end,
+        },
 
         { "neovim/nvim-lspconfig" },
         { "mason-org/mason.nvim" },
         { "mason-org/mason-lspconfig.nvim" },
         { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+        {
+            "nvim-lualine/lualine.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            opts = {},
+        },
         {
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
