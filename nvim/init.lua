@@ -563,6 +563,18 @@ do
             },
         },
     })
+    require("darcula").setup({
+        styles = {
+            comments = { italic = true },
+            diagnostics = { italic = false },
+        },
+        plugins = {
+            gitsigns = true,
+            telescope = true,
+            ["nvim-tree"] = true,
+        },
+    })
+    vim.cmd.colorscheme("darcula")
 end
 
 --[[
@@ -571,8 +583,6 @@ end
   ============================================================
 --]]
 do
-    vim.cmd.colorscheme("darcula")
-
     vim.keymap.set("t", "<leader>T", "<C-\\><C-N><leader>T", { desc = "Close Terminal" })
 
     vim.keymap.set("n", "<leader>T", "<cmd>ToggleTerm size=15<cr>", { desc = "UI: Toggle Rendered Markdown" })
