@@ -202,6 +202,33 @@ do
             float_opts = {
                 title_pos = "left",
             },
+            config = function()
+                local Terminal = require("toggleterm.terminal").Terminal
+                local floater = Terminal:new({ direction = "float" })
+                local main = Terminal:new({})
+
+                function floater_toggle()
+                    floater:toggle()
+                end
+
+                function main_toggle()
+                    main:toggle()
+                end
+
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<leader>T",
+                    "<cmd>lua main_toggle()<cr>",
+                    { noremap = true, silent = true, desc = "Toggle Terminal" }
+                )
+
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<leader>F",
+                    "<cmd>lua floater_toggle()<CR>",
+                    { noremap = true, silent = true, desc = "Floating Terminal" }
+                )
+            end,
         },
         {
             "stevearc/conform.nvim",
@@ -620,7 +647,6 @@ do
 
     vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-N>", { desc = "Terminal to normal mode" })
 
-    vim.keymap.set("n", "<leader>T", "<cmd>ToggleTerm size=15<cr>", { desc = "UI: Toggle Rendered Markdown" })
     -- Keep the search result centered
     vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search result" })
     vim.keymap.set("n", "N", "Nzzzv", { desc = "Go to prev search result" })
