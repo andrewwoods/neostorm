@@ -113,7 +113,7 @@ do
             "rootools/darcula.nvim",
             config = function()
                 require("lualine").setup({
-                    options = { theme = "darcula" },
+                    options = { theme = "auto" },
                 })
             end,
         },
@@ -579,7 +579,35 @@ do
             ["nvim-tree"] = true,
         },
     })
-    vim.cmd.colorscheme("darcula")
+
+    -- Persist the colorscheme across sessions
+    local state_file = vim.fn.stdpath("data") .. "/colorscheme.txt"
+    local default_scheme = "darcula"
+
+    local scheme = default_scheme
+    local f = io.open(state_file, "r")
+    if f then
+        local saved = f:read("*l")
+        f:close()
+        if saved and saved ~= "" then
+            scheme = saved
+        end
+    end
+    if not pcall(vim.cmd.colorscheme, scheme) then
+        pcall(vim.cmd.colorscheme, default_scheme)
+    end
+
+    -- Save whenever the colorscheme changes (registered after the initial load)
+    vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("persist-colorscheme", { clear = true }),
+        callback = function(args)
+            local out = io.open(state_file, "w")
+            if out then
+                out:write(args.match)
+                out:close()
+            end
+        end,
+    })
 end
 
 --[[
