@@ -618,6 +618,8 @@ end
 do
     vim.keymap.set("t", "<leader>T", "<C-\\><C-N><leader>T", { desc = "Close Terminal" })
 
+    vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-N>", { desc = "Terminal to normal mode" })
+
     vim.keymap.set("n", "<leader>T", "<cmd>ToggleTerm size=15<cr>", { desc = "UI: Toggle Rendered Markdown" })
     -- Keep the search result centered
     vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search result" })
