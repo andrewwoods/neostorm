@@ -1,21 +1,27 @@
 --[[
 
-NeoStorm
+:::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::    NeoStorm
+:::: ##::: ##:::: ######:::::    2026.11.01
+:::: ###:: ##::: ##... ##::::
+:::: ####: ##::: ##:::..:::::    The Neovim distribution inspired by PhpStorm
+:::: ## ## ##:::. ######:::::
+:::: ##. ####::::..... ##::::
+:::: ##:. ###::: ##::: ##::::
+:::: ##::. ##:::. ######:::::
+::::..::::..::::::......:::::    Requires: NVIM v0.12.6
+:::::::::::::::::::::::::::::
+:::: ############::::::::::::    Powered by Neovim
+::::.............::::::::::::    Developed by Andrew Woods, 2026
+:::::::::::::::::::::::::::::
 
-The Neovim Configuration Inspired by PhpStorm
+As a PhpStorm user, who loves Neovim and the terminal, it's natural to want to
+blend the two. There are some great Neovim distributions available to use.
+They're all opinionated in ways that are too far from what's common in PhpStorm.
 
-As a PhpStorm user, It's amazing how much it can help you write great code. I'm
-also a fan of Neovim. While PhpStorm has the best Vim-bindings support across
-IDEs, There are still times when it doesn't do what I want. This project
-approaches the issue from the opposite direction — to put PhpStorm support into
-my Neovim.
+This project makes the most of modern Neovim, Telescope, the plugin ecosystem,
+while taking inspiration from PhpStorm.
 
---]]
-
---[[
-  =============================================================
-  FUNCTIONS
-  =============================================================
 --]]
 
 --[[
