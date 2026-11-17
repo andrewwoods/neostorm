@@ -1,58 +1,52 @@
 
 # NeoStorm
 
-__The Neovim Configuration Inspired by PhpStorm__ 
+__The Neovim distribution inspired by PhpStorm__
+
+As a PhpStorm user, who loves Neovim and the terminal, it's natural to want to
+blend the two. There are some great Neovim distributions available to use.
+They're all opinionated in ways that are too far from what's common in PhpStorm.
+
+This project makes the most of modern Neovim, Telescope, the plugin ecosystem,
+while taking inspiration from PhpStorm.
 
 As a PhpStorm user, It's amazing how much it can help you write great code. I'm
-also a fan of Neovim. While PhpStorm has the best Vim-bindings support across
-IDEs, There are still times when it doesn't do what I want. This project
-approaches the issue from the opposite direction — to put PhpStorm support into
-my Neovim. More precisely, make Neovim act like PhpStorm.
+also a fan of Neovim. PhpStorm has the best Vim-bindings support across IDEs.
+However, there are still gaps in support in its vim support. Also, there are
+times when PhpStorm is too heavy for the work I want to do on a given day. This
+project approaches the issue from the opposite direction — to put the PhpStorm
+into Neovim. More precisely, make Neovim act like PhpStorm while acting while
+making the most of Neovim.
 
 > [!IMPORTANT]
 > **Hypothesis**: Can one create an IDE in Neovim, using the same keyboard
 > shortcuts as PhpStorm? 
 
-I think it should be possible. However, I suspect there may be some keystroke
-combinations used in PhpStorm that will get captured by the Terminal
-application, or the shell itself. The default keymaps for PhpStorm should
-trigger similar, if not the same behavior, in Neovim. Some interpretation will
-be necessary since the fixed width characters and UI drawing utilities of the
-terminal, will naturally display differently.
+That's how this project started. However, many of the keystroke combinations
+used in PhpStorm get captured by the Terminal application, or the shell itself.
+The goal isn't to duplicate every aspect of PhpStorm, e.g. the Database panel,
+the Services panel. *The goal is to focus on the code editing experience* — so
+LSP, code refactoring, Recent files, linting, code formatting, etc.
+Additionally, it's important to have the necessary tools (code quality, static
+analysis, and debugging) installed and ready to go. Having to perform a lot of
+setup is a barrier to creating high-quality professional code. Make it easy to
+do the right thing.
 
-I don't want to duplicate every panel used in PhpStorm, e.g. the Database
-panel. *The goal is to focus on the code editing experience* — so LSP, code
-refactoring, Recent files, linting, code formatting, etc. 
-
-This goal is *No configuration needed*. As Neovims, we do love to tweak our
-config. So let the user create a `~/.config/nvim/neostorm-user.lua`
-configuration file to add their own configuraiton settings and leader mappings. 
-
-## LANGUAGE PRIORITY
-
-1. Markdown
-1. PHP programming
-1. Bash
-1. Python
-1. HTML/CSS
-1. Javascript
-1. SQL
-1. Typescript
 
 ## Version
 
-The current version is 0.0.0. This project uses [semantic versioning](http://semver.org).
+The current version is 2026.11.01. This project uses [semantic versioning](http://semver.org).
 
 
 ## Table of Contents
 
 * Frequently Asked Questions (FAQ)
-* Keymaps
+* [Keymaps](docs/keymaps.md)
+* [Psalm Config](docs/psalm.md)
+* [PHPStan Config](docs/psalm.md)
 
 ## Issues to create
 
-* Create a **Scratches** Directory (Add, remove, file picker) uses `$XDG_DATA_HOME`) for project independent files.
-* Add `<leader>2` **Bookmarks panel**: Use a plugin to visualize breakpoints
 * Add `<leader>4` **Run panel**:
 * Add `<leader>5` **Debug panel**:
 * Add `<leader>6` **Problems panel**:
@@ -60,7 +54,6 @@ The current version is 0.0.0. This project uses [semantic versioning](http://sem
 * Is there a **Regex Tester** plugin I could add?
 * Write config examples for overwriting main config e.g. Use WordPress setting with `exrc` option enabled and `.nvim.lua` file.
 * Write keymap for a user plugin e.g. `require('awoods.keymaps')`
-* Add Harpoon support
 * Add Undotree support (Is there a better undotree UI than the default?)
 * Document Config File settings
 
@@ -84,6 +77,17 @@ The current version is 0.0.0. This project uses [semantic versioning](http://sem
 * Dynamic keymap menu via which-key
 
 
+## LANGUAGE PRIORITY
+
+1. Markdown
+1. PHP programming
+1. Bash
+1. HTML/CSS
+1. Python
+1. Javascript
+1. SQL
+1. Typescript
+
 
 ## Ideas for sections/pages
 
@@ -93,11 +97,18 @@ The current version is 0.0.0. This project uses [semantic versioning](http://sem
 
 ## Installation
 
-* Put your code into _src_
-* [Create a Git Ignore](https://www.gitignore.io/) file
-    - Add the phpdocs directory to your .gitignore file
-    - Add Editor-specific files to your .gitignore ( .swp for Vim, .idea for PHPStorm, etc. )
-* Select an [Open Source License](http://opensource.org/licenses) and copy it to LICENSE.txt
+> [!IMPORTANT] External Command Installation
+> You'll need to include external commands. How you install them is up to you.
+> Whether its via Homebrew, Apt, DNF, or a source tarball.
+>
+> * fzf
+> * ripgrep
+> * lazygit
+> * psalm
+>
+
+* Download the Neostorm repo from Github to ~/opt and extract it
+* Create the alias neostorm='NVIM_APPNAME="neostorm" nvim -u ~/opt/neostorm/nvim/init.lua'
 * Update [CONTRIBUTING.md](docs/CONTRIBUTING.md) to match your project needs
 
 ## Resources
