@@ -223,7 +223,7 @@ do
 
                 vim.api.nvim_set_keymap(
                     "n",
-                    "<leader>T",
+                    "<leader><F12>",
                     "<cmd>lua main_toggle()<cr>",
                     { noremap = true, silent = true, desc = "Toggle Terminal" }
                 )
@@ -702,7 +702,7 @@ do
         desc = "[Q]uickfix List [P]rev",
     })
 
-    vim.keymap.set("n", "<leader>qT", "<CMD>TodoQuickFix keywords=TODO,FIX,FIXME<CR>", { desc = "TODO" })
+    vim.keymap.set("n", "<leader>T", "<CMD>TodoQuickFix keywords=TODO,FIX,FIXME<CR>", { desc = "TODO" })
 
     -- Highlight when yanking (copying) text
     vim.api.nvim_create_autocmd("TextYankPost", {
