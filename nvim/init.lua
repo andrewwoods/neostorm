@@ -415,6 +415,10 @@ do
                     desc = "UI: Vim Options",
                 })
 
+                vim.keymap.set("n", "<leader>uf", function()
+                    vim.diagnostic.open_float()
+                end, { desc = "UI: Toggle Diagnostics Float" })
+
                 vim.keymap.set("n", "<leader>ud", function()
                     if vim.diagnostic.is_enabled() then
                         vim.diagnostic.enable(false)
@@ -464,6 +468,12 @@ do
                             { buffer = buf, desc = "Open Workspace Symbols" }
                         )
 
+                        vim.keymap.set(
+                            "n",
+                            "<leader>O",
+                            builtin.lsp_type_definitions,
+                            { buffer = buf, desc = "Open Workspace Symbols" }
+                        )
                         -- Opens a popup that displays documentation about the word under your cursor
                         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "Hover Documentation" })
                     end,
@@ -653,9 +663,20 @@ do
 
     vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-N>", { desc = "Terminal to normal mode" })
 
+    vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Remove search highlights" })
     -- Keep the search result centered
     vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search result" })
     vim.keymap.set("n", "N", "Nzzzv", { desc = "Go to prev search result" })
+
+    -- Emulate GUI Select All
+    -- Increment/decrement
+    vim.keymap.set("n", "+", "<C-a>", { desc = "Increment numbers", noremap = true })
+    vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement numbers", noremap = true })
+    vim.keymap.set("v", "+", "<C-a>gv", { desc = "Increment numbers", noremap = true })
+    vim.keymap.set("v", "-", "<C-x>gv", { desc = "Decrement numbers", noremap = true })
+
+    -- Emulate GUI Select All
+    vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
 
     -- Move visually selected lines up and down
     vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
