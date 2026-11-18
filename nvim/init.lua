@@ -600,7 +600,38 @@ do
                     php = { "psalm" },
                 },
             },
-            config = function() end,
+            config = function(_, opts)
+                local lint = require("lint")
+                lint.linters_by_ft = opts.linters_by_ft
+
+                -- Find the project root (the nearest directory containing composer.json)
+                local function php_root(bufnr)
+                    return vim.fs.root(bufnr or 0, { "composer.json" })
+                end
+                local psalm_cmd = "psalm"
+                local project_root = vim.fs.root(0, { "vendor/bin/psalm" })
+                local syspsalm = vim.fn.exepath("psalm")
+
+                if project_root then
+                    psalm_cmd = project_root .. "/psalm"
+                else
+                    if syspsalm then
+                        psalm_cmd = syspsalm
+                    end
+                end
+
+                -- Prefer the project-local Psalm, fall back to the global one
+                lint.linters.psalm.cmd = psalm_cmd
+
+                -- Run linting, using the project root as the working directory
+                vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave" }, {
+                    group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+                    callback = function(args)
+                        local root = php_root(args.buf)
+                        lint.try_lint(nil, { cwd = root })
+                    end,
+                })
+            end,
         },
     }, {
         ui = {
