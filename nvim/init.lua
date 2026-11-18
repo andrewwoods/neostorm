@@ -778,23 +778,15 @@ do
     --  See `:help lsp-config` for information about keys and how to configure
     ---@type table<string, vim.lsp.Config>
     local servers = {
-        -- clangd = {},
-        -- gopls = {},
         pyright = {},
         shellcheck = {},
         markdownlint = {},
-        -- tsc = {},
-        --
-        -- Some languages (like rust) have entire language plugins that can be useful:
-        --    https://github.com/mrcjkb/rustaceanvim
-        --
-        -- But for many setups, the LSP (`rust_analyzer`) will work just fine
-        -- rust_analyzer = {},
-        -- @TODO: Determine if I need this for PHPantom
-        phpantom_lsp = {
-            cmd = { "phpantom_lsp" },
-            filetypes = { "php" },
-            root_markers = { ".phpantom.toml", ".git", "composer.json" },
+        intelephense = {
+            {
+                environment = {
+                    phpVersion = "8.4",
+                },
+            },
         },
         stylua = {}, -- Used to format Lua code
 
@@ -863,11 +855,3 @@ do
         vim.lsp.enable(name)
     end
 end
-
---[[
-  =============================================================
-  SECTION N: General Keymaps
-  =============================================================
---]]
-
-
