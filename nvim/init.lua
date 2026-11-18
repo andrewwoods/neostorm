@@ -520,7 +520,19 @@ do
                     },
                 })
 
-                vim.keymap.set("n", "<leader>1", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Project files" })
+                local api = require("nvim-tree.api")
+                local scratch_dir = vim.fn.stdpath("data") .. "/Scratches"
+                vim.fn.mkdir(scratch_dir, "p")
+
+                -- Project files: reopen at the current working directory
+                vim.keymap.set("n", "<leader>1", function()
+                    api.tree.toggle({ find_file = true, path = vim.fn.getcwd() })
+                end, { desc = "Project files" })
+
+                -- Scratches: same behavior, but rooted in the XDG_DATA_HOME
+                vim.keymap.set("n", "<leader>S", function()
+                    api.tree.toggle({ find_file = true, path = scratch_dir })
+                end, { desc = "Scratches" })
             end,
         },
         {
