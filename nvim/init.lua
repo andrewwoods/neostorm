@@ -702,6 +702,8 @@ end
   ============================================================
 --]]
 do
+    vim.keymap.set("n", "<leader>R", "<cmd>restart<cr>", { desc = "Restart NeoStorm" })
+
     vim.keymap.set("t", "<leader>T", "<C-\\><C-N><leader>T", { desc = "Close Terminal" })
 
     vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-N>", { desc = "Terminal to normal mode" })
