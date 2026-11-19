@@ -2,9 +2,9 @@
 
 :::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::    NeoStorm
-:::: ##::: ##:::: ######:::::    2026.11.01
-:::: ###:: ##::: ##... ##::::
-:::: ####: ##::: ##:::..:::::    The Neovim distribution inspired by PhpStorm
+:::: ##::: ##:::: ######:::::
+:::: ###:: ##::: ##... ##::::    The Neovim distribution inspired by PhpStorm
+:::: ####: ##::: ##:::..:::::
 :::: ## ## ##:::. ######:::::
 :::: ##. ####::::..... ##::::
 :::: ##:. ###::: ##::: ##::::
@@ -23,6 +23,10 @@ This project makes the most of modern Neovim, Telescope, the plugin ecosystem,
 while taking inspiration from PhpStorm.
 
 --]]
+
+local M = {}
+
+M.version = "2026.11.01"
 
 --[[
   =============================================================
@@ -892,4 +896,54 @@ do
         vim.lsp.config(name, server)
         vim.lsp.enable(name)
     end
+end
+
+--[[
+  ============================================================
+  SECTION 5: Functions
+  ============================================================
+--]]
+
+do
+    -- Subcommand table: name -> handler(args)
+    local subcommands = {
+        about = function(_)
+            vim.notify("The Neovim distribution inspired by PhpStorm. Requires: NVIM v0.12.6.", vim.log.levels.INFO)
+        end,
+        version = function(_)
+            vim.notify("NeoStorm version: " .. M.version, vim.log.levels.INFO)
+        end,
+    }
+
+    vim.api.nvim_create_user_command("NeoStorm", function(opts)
+        local name = opts.fargs[1]
+        local handler = subcommands[name]
+
+        if not handler then
+            vim.notify("NeoStorm: unknown subcommand '" .. tostring(name) .. "'", vim.log.levels.ERROR)
+            return
+        end
+
+        -- Pass any remaining args to the handler
+        handler(vim.list_slice(opts.fargs, 2))
+    end, {
+        nargs = "+",
+        desc = "NeoStorm commands",
+        complete = function(arg_lead, cmd_line, _)
+            -- Only complete the first argument (the subcommand)
+            local parts = vim.split(cmd_line, "%s+")
+            if #parts > 2 then
+                return {}
+            end
+
+            local matches = {}
+            for name, _ in pairs(subcommands) do
+                if name:find("^" .. vim.pesc(arg_lead)) then
+                    table.insert(matches, name)
+                end
+            end
+            table.sort(matches)
+            return matches
+        end,
+    })
 end
