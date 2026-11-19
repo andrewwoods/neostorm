@@ -760,6 +760,11 @@ do
         vim.cmd("copen")
     end, { desc = "Send Diagnostics to Quickfix" })
 
+    vim.keymap.set("n", "<leader>qC", function()
+        vim.fn.setqflist({}, "r")
+        vim.cmd("cclose")
+    end, { desc = "Clear the Quickfix list" })
+
     vim.keymap.set("n", "q[", "<cmd>cnext<cr>", {
         desc = "[Q]uickfix List [N]ext",
     })
