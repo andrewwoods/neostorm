@@ -86,7 +86,7 @@ do
     vim.o.cursorline = true
     vim.o.scrolloff = 8
     vim.o.confirm = true
-    -- May need to remove these tab settings in the future, they're useful for
+    -- TODO: May need to remove these tab settings in the future, they're useful for
     -- the time being.
     vim.o.textwidth = 80
     vim.o.tabstop = 4
@@ -246,6 +246,7 @@ do
             cmd = { "ConformInfo" },
             opts = {
                 formatters_by_ft = {
+                    -- :help conform-formatters
                     lua = { "stylua" },
                     php = { "php_cs_fixer" },
                     python = { "black" },
@@ -333,9 +334,9 @@ do
 
                 vim.keymap.set("n", "<leader>E", function()
                     builtin.oldfiles({ only_cwd = true })
-                end, { desc = "Open Recent Files (Leader+E)" })
+                end, { desc = "Open Recent Files" })
 
-                vim.keymap.set("n", "<leader>O", builtin.find_files, { desc = "Open Files (Leader+Shift+O)" })
+                vim.keymap.set("n", "<leader>O", builtin.find_files, { desc = "Open Files" })
 
                 vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
                 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "[P]roject Files Tracked by [G]it" })
@@ -467,16 +468,16 @@ do
 
                         vim.keymap.set(
                             "n",
-                            "<leader>O",
+                            "<leader>W",
                             builtin.lsp_dynamic_workspace_symbols,
                             { buffer = buf, desc = "Open Workspace Symbols" }
                         )
 
                         vim.keymap.set(
                             "n",
-                            "<leader>O",
+                            "<leader>X",
                             builtin.lsp_type_definitions,
-                            { buffer = buf, desc = "Open Workspace Symbols" }
+                            { buffer = buf, desc = "Open Type Definitions" }
                         )
                         -- Opens a popup that displays documentation about the word under your cursor
                         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "Hover Documentation" })
